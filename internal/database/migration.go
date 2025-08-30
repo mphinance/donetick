@@ -13,6 +13,7 @@ import (
 	cModel "donetick.com/core/internal/circle/model"
 	nModel "donetick.com/core/internal/notifier/model"
 	pModel "donetick.com/core/internal/points"
+	rModel "donetick.com/core/internal/rewards/model"
 	storageModel "donetick.com/core/internal/storage/model"
 	stModel "donetick.com/core/internal/subtask/model"
 	tModel "donetick.com/core/internal/thing/model"
@@ -45,6 +46,11 @@ func Migration(db *gorm.DB) error {
 		storageModel.StorageFile{},
 		storageModel.StorageUsage{},
 		chModel.TimeSession{},
+		// Rewards and Goals models
+		rModel.Reward{},
+		rModel.RewardRedemption{},
+		rModel.Goal{},
+		rModel.GoalProgress{},
 	); err != nil {
 		return err
 	}

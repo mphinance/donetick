@@ -19,6 +19,7 @@ import (
 	nRepo "donetick.com/core/internal/notifier/repo"
 	nps "donetick.com/core/internal/notifier/service"
 	"donetick.com/core/internal/realtime"
+	"donetick.com/core/internal/rewards"
 	storage "donetick.com/core/internal/storage"
 	storageModel "donetick.com/core/internal/storage/model"
 	storageRepo "donetick.com/core/internal/storage/repo"

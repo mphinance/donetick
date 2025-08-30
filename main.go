@@ -40,6 +40,8 @@ import (
 	telegram "donetick.com/core/internal/notifier/service/telegram"
 	pRepo "donetick.com/core/internal/points/repo"
 	"donetick.com/core/internal/realtime"
+	"donetick.com/core/internal/rewards"
+	rRepo "donetick.com/core/internal/rewards/repo"
 	"donetick.com/core/internal/thing"
 	tRepo "donetick.com/core/internal/thing/repo"
 	"donetick.com/core/internal/user"
@@ -112,6 +114,11 @@ func main() {
 		fx.Provide(lRepo.NewLabelRepository),
 		fx.Provide(label.NewHandler),
 
+		// Rewards and Goals:
+		fx.Provide(rRepo.NewRewardsRepository),
+		fx.Provide(rewards.NewHandler),
+		fx.Provide(rewards.NewService),
+
 		fx.Provide(thing.NewAPI),
 		fx.Provide(thing.NewHandler),
 
@@ -145,6 +152,7 @@ func main() {
 			storage.Routes,
 			frontend.Routes,
 			resource.Routes,
+			rewards.Routes,
 
 			realtime.Routes, //(router, rts, authMiddleware, pollingHandler)
 
