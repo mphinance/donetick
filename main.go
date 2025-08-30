@@ -39,6 +39,7 @@ import (
 	"donetick.com/core/internal/notifier/service/pushover"
 	telegram "donetick.com/core/internal/notifier/service/telegram"
 	pRepo "donetick.com/core/internal/points/repo"
+	"donetick.com/core/internal/points"
 	"donetick.com/core/internal/realtime"
 	"donetick.com/core/internal/rewards"
 	rRepo "donetick.com/core/internal/rewards/repo"

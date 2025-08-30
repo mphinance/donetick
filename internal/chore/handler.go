@@ -1514,6 +1514,14 @@ func (h *Handler) completeChore(c *gin.Context) {
 	// }()
 	h.nPlanner.GenerateNotifications(c, updatedChore)
 	h.eventProducer.ChoreCompleted(c, currentUser.WebhookURL, chore, &currentUser.User)
+	
+	// Update goal progress when points are earned
+	if chore.Points != nil && *chore.Points > 0 {
+		if err := h.rewardsService.UpdateGoalProgressForUser(c, currentUser.ID, currentUser.CircleID, *chore.Points); err != nil {
+			log.Errorw("Failed to update goal progress", "error", err)
+			// Don't fail the request, just log the error
+		}
+	}
 	if h.realTimeService != nil {
 		broadcaster := h.realTimeService.GetEventBroadcaster()
 		// Get the completion history entry
